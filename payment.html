@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magnus Payment</title>
+  <link rel="stylesheet" href="payment.css" />
+</head>
+<body>
+  <div class="alert">
+    ⚠️ Complete your payment within <b>10 minutes</b> to secure your Magnus registration.
+  </div>
+
+  <p class="intro">
+    Transfer exactly <b>₦11,000</b>, <b>₦17,500</b>, or <b>₦28,500</b> to complete your registration:
+  </p>
+
+  <!-- Your payment cards go here -->
+
+  <!-- ✅ Add this at the very bottom -->
+  <script src="payment.js"></script>
+<<div class="card">
+    <h2>MERCHANT 1</h2>
+    <h3>OPAY</h3>
+    <p class="account-number">
+      <span>6112282804</span>
+      <button class="copy-btn" data-account="6112282804">📋 Copy</button>
+    </p>
+    <p class="account-name">Lucy Abanum _magnus</p>
+  </div>
+
+  <div class="card">
+    <h2>MERCHANT 2</h2>
+    <h3>FCMB (First City Monument Bank)</h3>
+    <p class="account-number">
+      <span>1036388934</span>
+      <button class="copy-btn" data-account="1036388934">📋 Copy</button>
+    </p>
+    <p class="account-name">Divine Abanum</p>
+    <p class="note">NOTE: Do not pay with Opay. Use PalmPay, FCMB, or other banks.</p>
+  </div>
+
+  <div class="spinner"></div>
+  <div class="timer">⏳ Time left: <span id="countdown">10:00</span></div>
+
+  <div class="verify-section">
+    <p>Click below to confirm your payment</p>
+    <a href="https://wa.link/yx45yk" target="_blank" class="verify-btn">✅ I have made the transfer</a>
+  </div>
+
+  <div id="toast">Copied!</div>
+
+  <footer>© 2025 Magnus. All Rights Reserved.</footer>
+
+  <script defer src="payment.js"></script>
+</body>
+</html>

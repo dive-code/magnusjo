@@ -1,57 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Magnus Payment</title>
-  <link rel="stylesheet" href="payment.css" />
-</head>
-<body>
-  <div class="alert">
-    ⚠️ Complete your payment within <b>10 minutes</b> to secure your Magnus registration.
-  </div>
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Magnus Payment</title>  
+  <style>  
+    body {  
+      margin: 0;  
+      font-family: "Poppins", Arial, sans-serif;  
+      background: #fff;  
+      color: #000;  
+      text-align: center;  
+      padding: 20px;  
+    }  
 
-  <p class="intro">
-    Transfer exactly <b>₦11,000</b>, <b>₦17,500</b>, or <b>₦28,500</b> to complete your registration:
-  </p>
+    .card {  
+      background: #2d0052;  
+      color: #fff;  
+      padding: 20px;  
+      border-radius: 12px;  
+      margin-bottom: 20px;  
+      text-align: center;  
+    }  
 
-  <!-- Your payment cards go here -->
+    .card h2 {  
+      font-size: 16px;  
+      margin-bottom: 5px;  
+      color: #ffcc00;  
+    }  
 
-  <!-- ✅ Add this at the very bottom -->
-  <script src="payment.js"></script>
-<<div class="card">
-    <h2>MERCHANT 1</h2>
-    <h3>OPAY</h3>
-    <p class="account-number">
-      <span>6112282804</span>
-      <button class="copy-btn" data-account="6112282804">📋 Copy</button>
-    </p>
-    <p class="account-name">Lucy Abanum _magnus</p>
-  </div>
+    .card h3 {  
+      font-size: 18px;  
+      margin: 8px 0;  
+      font-weight: bold;  
+    }  
 
-  <div class="card">
-    <h2>MERCHANT 2</h2>
-    <h3>FCMB (First City Monument Bank)</h3>
-    <p class="account-number">
-      <span>1036388934</span>
-      <button class="copy-btn" data-account="1036388934">📋 Copy</button>
-    </p>
-    <p class="account-name">Divine Abanum</p>
-    <p class="note">NOTE: Do not pay with Opay. Use PalmPay, FCMB, or other banks.</p>
-  </div>
+    .account-number {  
+      font-size: 20px;  
+      font-weight: bold;  
+      margin: 10px 0;  
+    }  
 
-  <div class="spinner"></div>
-  <div class="timer">⏳ Time left: <span id="countdown">10:00</span></div>
+    .account-name {  
+      font-size: 15px;  
+      font-weight: bold;  
+      color: #ffcc00;  
+      margin-top: 5px;  
+    }  
 
-  <div class="verify-section">
-    <p>Click below to confirm your payment</p>
-    <a href="https://wa.link/yx45yk" target="_blank" class="verify-btn">✅ I have made the transfer</a>
-  </div>
+    .note {  
+      margin-top: 10px;  
+      font-size: 13px;  
+      font-weight: bold;  
+      color: #ffcc00;  
+      line-height: 1.6;  
+    }  
 
-  <div id="toast">Copied!</div>
+    .copy-btn {  
+      display: inline-block;  
+      margin-left: 10px;  
+      padding: 6px 14px;  
+      font-size: 13px;  
+      border: none;  
+      border-radius: 6px;  
+      background: #ff9900;  
+      color: #fff;  
+      cursor: pointer;  
+      transition: 0.3s;  
+      font-weight: bold;  
+    }  
 
-  <footer>© 2025 Magnus. All Rights Reserved.</footer>
+    .copy-btn:hover {  
+      background: #e68900;  
+    }  
 
-  <script defer src="payment.js"></script>
-</body>
+    .verify-section {  
+      margin-top: 25px;  
+    }  
+
+    .verify-btn {  
+      display: block;  
+      width: 100%;  
+      max-width: 350px;  
+      margin: auto;  
+      padding: 15px;  
+      border: none;  
+      border-radius: 25px;  
+      background: #000;  
+      color: #fff;  
+      font-size: 15px;  
+      font-weight: bold;  
+      cursor: pointer;  
+      transition: 0.3s;  
+      text-decoration: none;  
+    }  
+
+    .verify-btn:hover {  
+      opacity: 0.9;  
+    }  
+
+    footer {  
+      margin-top: 25px;  
+      font-size: 13px;  
+      color: #555;  
+    }  
+  </style>  
+</head>  
+<body>  
+
+  <p style="font-size:18px; font-weight:600; color:#333; margin-bottom:20px;">  
+    For your selected package, transfer exactly   
+    <b>₦11,000</b>, <b>₦17,500</b>, or <b>₦28,500</b>   
+    to any of the accounts below for your coupon code registration.  
+  </p>  
+
+  <!-- First Merchant -->  
+  <div class="card">  
+    <h2>MERCHANT 1</h2>  
+    <h3>OPAY</h3>  
+    <p class="account-number">  
+      <span id="acct1">6100139467</span>  
+      <button class="copy-btn" onclick="copyText('6100139467', this)">Copy</button>  
+    </p>  
+    <p class="account-name">Emah kufre</p>  
+  </div>  
+
+  <!-- Second Merchant -->  
+  <div class="card">  
+    <h2>MERCHANT 2</h2>  
+    <h3>FCMB (First City Monument Bank)</h3>  
+    <p class="account-number">  
+      <span id="acct2">0074498348</span>  
+      <button class="copy-btn" onclick="copyText('0074498348', this)">Copy</button>  
+    </p>  
+    <p class="account-name">Emah kufre</p>  
+    <p class="note">(NOTE: Don’t pay with Opay. Use PalmPay, FCMB, or other banks.)</p>  
+  </div>  
+
+  <!-- Verify -->  
+  <div class="verify-section">  
+    <p>Click the button below to verify your payment</p>  
+    <a href="https://wa.link/6bnjrx" target="_blank" class="verify-btn">✅ I have made the transfer</a>  
+  </div>  
+
+  <footer>  
+    © 2025 Magnus. All Rights Reserved.  
+  </footer>  
+
+  <script>  
+    function copyText(account, button) {  
+      navigator.clipboard.writeText(account).then(() => {  
+        button.textContent = "Copied!";  
+        button.style.background = "#28a745";  
+        setTimeout(() => {  
+          button.textContent = "Copy";  
+          button.style.background = "#ff9900";  
+        }, 2000);  
+      }).catch(() => {  
+        // Fallback if clipboard API fails  
+        const tempInput = document.createElement("input");  
+        tempInput.value = account;  
+        document.body.appendChild(tempInput);  
+        tempInput.select();  
+        document.execCommand("copy");  
+        document.body.removeChild(tempInput);  
+        button.textContent = "Copied!";  
+        button.style.background = "#28a745";  
+        setTimeout(() => {  
+          button.textContent = "Copy";  
+          button.style.background = "#ff9900";  
+        }, 2000);  
+      });  
+    }  
+  </script>  
+
+</body>  
 </html>
+

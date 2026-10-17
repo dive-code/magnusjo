@@ -216,17 +216,18 @@
     </p>
   </main>
 
+  <!-- TikTok Pixel Event Tracking -->
   <script>
-    // Track when visitors view the landing-page content.
-    // ttq.page() above already tracks PageView.
+    // Track landing-page content views.
+    // Each event includes content_id.
     ttq.track("ViewContent", {
       content_id: "jovia_whatsapp",
       content_type: "product",
       content_name: "Jovia Celebrity Videos"
     });
 
-    // Track clicks on the WhatsApp button.
-    // A click does not confirm that someone joined the group.
+    // Track clicks on the WhatsApp group button.
+    // This records a click, not a confirmed group membership.
     document.getElementById("joinBtn").addEventListener("click", function () {
       ttq.track("Contact", {
         content_id: "jovia_whatsapp",
@@ -235,5 +236,6 @@
       });
     });
   </script>
+  <!-- End TikTok Pixel Event Tracking -->
 </body>
 </html>

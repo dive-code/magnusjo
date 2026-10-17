@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +33,7 @@
       ttq.instance = function (t) {
         for (
           var e = ttq._i[t] || [],
-          n = 0;
+              n = 0;
           n < ttq.methods.length;
           n++
         ) {
@@ -180,6 +179,12 @@
         font-size: 24px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .join-button {
+        transition: none;
+      }
+    }
   </style>
 </head>
 
@@ -212,15 +217,23 @@
   </main>
 
   <script>
-    // Track content views.
+    // Track when visitors view the landing-page content.
     // ttq.page() above already tracks PageView.
-    ttq.track("ViewContent");
+    ttq.track("ViewContent", {
+      content_id: "jovia_whatsapp",
+      content_type: "product",
+      content_name: "Jovia Celebrity Videos"
+    });
 
     // Track clicks on the WhatsApp button.
+    // A click does not confirm that someone joined the group.
     document.getElementById("joinBtn").addEventListener("click", function () {
-      ttq.track("Contact");
+      ttq.track("Contact", {
+        content_id: "jovia_whatsapp",
+        content_type: "product",
+        content_name: "Jovia Celebrity Videos WhatsApp Group"
+      });
     });
   </script>
 </body>
 </html>
-```
